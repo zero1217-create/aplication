@@ -1,1 +1,43 @@
+body {
+  font-family: sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background: #f0f0f0;
+}
+
+#quiz-app {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.btn-grid {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+button {
+  flex: 1;
+  padding: 10px;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.hide { display: none; }
+
+.correct { background: #d4edda; }
+.incorrect { background: #f8d7da; }
+
+#feedback {
+  margin-top: 20px;
+  font-size: 1.1rem;
+  text-align: center;
+}
 
