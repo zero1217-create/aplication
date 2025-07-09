@@ -1,43 +1,62 @@
-body {
-  font-family: sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0;
-  background: #f0f0f0;
+const questions = [
+  { text: "日本の首都は東京である。", answer: true },
+  { text: "富士山は大阪にある。", answer: false },
+  { text: "地球は太陽系の惑星である。", answer: true },
+];
+
+let current = 0;
+let score = 0;
+
+const qEl = document.getElementById("question");
+const btns = document.querySelectorAll("#answer-buttons button");
+const feedback = document.getElementById("feedback");
+const nextBtn = document.getElementById("next-btn");
+const restartBtn = document.getElementById("restart-btn");
+
+function showQuestion() {
+  const q = questions[current];
+  qEl.textContent = q.text;
+  feedback.classList.add("hide");
+  btns.forEach(b => b.disabled = false);
+  btns.forEach(b => b.classList.remove("correct", "incorrect"));
+  nextBtn.classList.add("hide");
 }
 
-#quiz-app {
-  background: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  width: 90%;
-  max-width: 400px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+function selectAnswer(e) {
+  const selected = (e.target.dataset.answer === "true");
+  const correct = questions[current].answer === selected;
+  if (correct) {
+    score++;
+    e.target.classList.add("correct");
+    feedback.textContent = "正解！";
+  } else {
+    e.target.classList.add("incorrect");
+    feedback.textContent = "不正解…";
+  }
+  feedback.classList.remove("hide");
+  btns.forEach(b => b.disabled = true);
+  nextBtn.classList.remove("hide");
 }
 
-.btn-grid {
-  display: flex;
-  gap: 10px;
-  margin-top: 20px;
-}
+btns.forEach(b => b.addEventListener("click", selectAnswer));
 
-button {
-  flex: 1;
-  padding: 10px;
-  font-size: 1.2rem;
-  cursor: pointer;
-}
+nextBtn.addEventListener("click", () => {
+  current++;
+  if (current < questions.length) {
+    showQuestion();
+  } else {
+    feedback.textContent = `終了！${questions.length}問中${score}問正解でした！`;
+    feedback.classList.remove("hide");
+    nextBtn.classList.add("hide");
+    restartBtn.classList.remove("hide");
+  }
+});
 
-.hide { display: none; }
+restartBtn.addEventListener("click", () => {
+  current = 0; score = 0;
+  restartBtn.classList.add("hide");
+  showQuestion();
+});
 
-.correct { background: #d4edda; }
-.incorrect { background: #f8d7da; }
-
-#feedback {
-  margin-top: 20px;
-  font-size: 1.1rem;
-  text-align: center;
-}
-
+// 初回表示
+showQuestion();
