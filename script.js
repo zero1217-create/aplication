@@ -1,7 +1,8 @@
 const questions = [
-  { text: "日本の首都は東京である。", answer: true },
-  { text: "富士山は大阪にある。", answer: false },
-  { text: "地球は太陽系の惑星である。", answer: true },
+  { text: "クジラは魚類である", answer: false },
+  { text: "ライオンはネコ科の動物である。", answer: true },
+  { text: "ペンギンは空を飛べる。", answer: false },
+  { text: "ダチョウは空を飛べる。", answer: false },
 ];
 
 let current = 0;
