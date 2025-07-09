@@ -18,13 +18,15 @@ function showQuestion() {
   const q = questions[current];
   qEl.textContent = q.text;
   feedback.classList.add("hide");
-  btns.forEach(b => b.disabled = false);
-  btns.forEach(b => b.classList.remove("correct", "incorrect"));
+  btns.forEach(b => {
+    b.disabled = false;
+    b.classList.remove("correct", "incorrect");
+  });
   nextBtn.classList.add("hide");
 }
 
 function selectAnswer(e) {
-  const selected = (e.target.dataset.answer === "true");
+  const selected = e.target.dataset.answer === "true";
   const correct = questions[current].answer === selected;
   if (correct) {
     score++;
@@ -54,10 +56,10 @@ nextBtn.addEventListener("click", () => {
 });
 
 restartBtn.addEventListener("click", () => {
-  current = 0; score = 0;
+  current = 0;
+  score = 0;
   restartBtn.classList.add("hide");
   showQuestion();
 });
 
-// 初回表示
 showQuestion();
