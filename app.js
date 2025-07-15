@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 
 const quizData = [
-  { question: "富士山は日本一高い山ですか？", answer: true },
-  { question: "月は太陽より明るいですか？", answer: false },
-  { question: "サッカーは11人対11人で行いますか？", answer: true },
+  { text: "クジラは魚類である", answer: false },
+  { text: "ライオンはネコ科の動物である。", answer: true },
+  { text: "ペンギンは空を飛べる。", answer: false },
+  { text: "ダチョウは空を飛べる。", answer: false },
 ];
 
 export default function App() {
